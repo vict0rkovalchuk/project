@@ -17,5 +17,6 @@ const a1 = prompt("Last watched movie", ""),
 
 personalMovieDB.movies[a1] = a2;
 personalMovieDB.movies[a3] = a4;
-
+//movies.a1
+//movies.a3
 console.log(personalMovieDB);

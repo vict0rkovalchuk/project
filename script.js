@@ -1,3 +1,21 @@
 "use strict";
 
-alert("Hello");
+const numberOfFilms = +prompt("Number of watched movies", "");
+
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
+
+const a1 = prompt("Last watched movie", ""),
+  a2 = prompt("How much do you rate it?", ""),
+  a3 = prompt("Last watched movie", ""),
+  a4 = prompt("How much do you rate it?", "");
+
+personalMovieDB.movies[a1] = a2;
+personalMovieDB.movies[a3] = a4;
+
+console.log(personalMovieDB);

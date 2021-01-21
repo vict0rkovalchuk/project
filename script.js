@@ -10,9 +10,12 @@ const personalMovieDB = {
   privat: false,
 };
 
-for (let i = 0; i < 2; i++) {
+/*let i = 0;*/
+
+for (let i = 0; i < 2; i++) /*while (i < 2)*/ {
   const a1 = prompt("Last watched movie", ""),
     a2 = prompt("How much do you rate it?", "");
+  // i++;
 
   if (a1 != null && a2 != null && a1 != "" && a2 != "" && a1.length < 50) {
     personalMovieDB.movies[a1] = a2;

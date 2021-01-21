@@ -12,7 +12,7 @@ const personalMovieDB = {
 
 /*let i = 0;*/
 
-for (let i = 0; i < 2; i++) /*while (i < 2)*/ {
+for (let i = 0; i < 2; i++) /*do*/ {
   const a1 = prompt("Last watched movie", ""),
     a2 = prompt("How much do you rate it?", "");
   // i++;
@@ -24,7 +24,7 @@ for (let i = 0; i < 2; i++) /*while (i < 2)*/ {
     console.log("Error");
     i--;
   }
-}
+} /*while (i < 2);*/
 
 if (personalMovieDB.count < 10) {
   console.log("Very few movies have been watched");

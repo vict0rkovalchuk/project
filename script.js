@@ -1,70 +1,91 @@
 "use strict";
 
-let numberOfFilms;
-
-function start() {
-  numberOfFilms = +prompt("Number of watched movies", "");
-
-  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
-    numberOfFilms = +prompt("Number of watched movies", "");
-  }
-}
-
-start();
-
 const personalMovieDB = {
-  count: numberOfFilms,
+  count: 0,
   movies: {},
   actors: {},
   genres: [],
   privat: false,
-};
 
-function rememberMyFilms() {
-  for (let i = 0; i < 2; i++) {
-    const a1 = prompt("Last watched movie", ""),
-      a2 = prompt("How much do you rate it?", "");
+  start: function () {
+    personalMovieDB.count = +prompt("Number of watched movies", "");
 
-    if (a1 != null && a2 != null && a1 != "" && a2 != "" && a1.length < 50) {
-      personalMovieDB.movies[a1] = a2;
-      console.log("All right");
-    } else {
-      console.log("Error");
-      i--;
+    while (
+      personalMovieDB.count == "" ||
+      personalMovieDB.count == null ||
+      isNaN(personalMovieDB.count)
+    ) {
+      personalMovieDB.count = +prompt("Number of watched movies", "");
     }
-  }
-}
+  },
 
-rememberMyFilms();
+  rememberMyFilms: function () {
+    for (let i = 0; i < 2; i++) {
+      const a1 = prompt("Last watched movie", ""),
+        a2 = prompt("How much do you rate it?", "");
 
-function detectPersonalLevel() {
-  if (personalMovieDB.count < 10) {
-    console.log("Very few movies have been watched");
-  } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-    console.log("You are a classic spectator");
-  } else if (personalMovieDB.count >= 30) {
-    console.log("You are a movie fan");
-  } else {
-    console.log("An error has occurred");
-  }
-}
+      if (a1 != null && a2 != null && a1 != "" && a2 != "" && a1.length < 50) {
+        personalMovieDB.movies[a1] = a2;
+        console.log("All right");
+      } else {
+        console.log("Error");
+        i--;
+      }
+    }
+  },
 
-detectPersonalLevel();
+  detectPersonalLevel: function () {
+    if (personalMovieDB.count < 10) {
+      console.log("Very few movies have been watched");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+      console.log("You are a classic spectator");
+    } else if (personalMovieDB.count >= 30) {
+      console.log("You are a movie fan");
+    } else {
+      console.log("An error has occurred");
+    }
+  },
 
-function showMyDB(hidden) {
-  if (!hidden) {
-    console.log(personalMovieDB);
-  }
-}
+  showMyDB: function (hidden) {
+    if (!hidden) {
+      console.log(personalMovieDB);
+    }
+  },
 
-showMyDB(personalMovieDB.privat);
+  toggleVisibleMtDB: function () {
+    if (personalMovieDB.privat) {
+      personalMovieDB.privat = false;
+    } else {
+      personalMovieDB.privat = true;
+    }
+  },
 
-function writeYourGenres() {
-  for (let i = 1; i <= 3; i++) {
-    personalMovieDB.genres[i - 1] = prompt(
-      `Your favorite genre is numbered ${i}`
-    );
-  }
-}
+  writeYourGenres: function () {
+    for (let i = 1; i <= 3; i++) {
+      let genre = prompt(`Your favorite genre is numbered ${i}`);
 
-writeYourGenres();
+      if (genre === "" || genre == null) {
+        console.log("You entered incorrect data or did not enter it at all");
+        i--;
+      } else {
+        personalMovieDB.genres[i - 1] = genre;
+      }
+
+      // let genres = prompt(
+      //   `Enter your favorite genres separated by commas`
+      // ).toLowerCase();
+
+      // if (genres === "" || genres == null) {
+      //   console.log("You entered incorrect data or did not enter it at all");
+      //   i--;
+      // } else {
+      //   personalMovieDB.genres = genres.split(", ");
+      //   personalMovieDB.genres.sort();
+      // }
+    }
+
+    personalMovieDB.genres.forEach((item, i) => {
+      console.log(`Favourite genre ${i + 1} - this ${item}`);
+    });
+  },
+};
